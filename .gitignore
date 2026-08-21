@@ -1,0 +1,35 @@
+# --- Entornos virtuales ---
+*venv*/
+env/
+.venv/
+.env
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Modelos y artefactos generados por el pipeline ---
+*.pkl
+*.joblib
+models/
+artifacts/
+mlruns/
+
+# --- Datos generados/intermedios (no el dataset fuente versionado) ---
+data/processed/
+data/interim/
+
+# --- Docker ---
+*.log
+
+# --- Sistema operativo / editores ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
