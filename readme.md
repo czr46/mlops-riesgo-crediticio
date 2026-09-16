@@ -28,11 +28,13 @@ mlops_pipeline/
 │   ├── comprension_eda.ipynb         # Análisis exploratorio de datos (EDA)
 │   ├── ft_engineering.py             # Ingeniería de características
 │   ├── model_training_evaluation.py  # Entrenamiento y evaluación de modelos
-│   ├── model_deploy.py               # Despliegue del modelo como API
+│   ├── model_deploy.py               # Despliegue del modelo como API (FastAPI)
 │   ├── model_monitoring.py           # Monitoreo y detección de data drift
 │   └── streamlit_app.py              # Dashboard interactivo de monitoreo
 ├── Base_de_datos.csv                 # Dataset de ejemplo (no productivo)
 ├── requirements.txt                  # Dependencias del proyecto
+├── Dockerfile                        # Imagen para servir la API del modelo
+├── .dockerignore
 ├── .gitignore
 └── readme.md
 ```
@@ -64,9 +66,10 @@ integrarse a `main`.
 |---|---|---|
 | V1.0.0 | main / certification / developer | Estructura de carpetas inicial (punto de partida) |
 | V1.0.1 | developer → main | `Cargar_datos.ipynb` + `comprension_eda.ipynb` |
-| V1.1.0 | developer → main | Ingeniería de características y modelado (`ft_engineering.py`) |
-| V1.1.1 | developer → main | Monitoreo de data drift y app en Streamlit |
-| ... | developer → main | Despliegue con FastAPI + Docker |
+| V1.1.0 | developer → main | Ingeniería de características (`ft_engineering.py`) |
+| V1.1.1 | developer → main | Entrenamiento y evaluación de modelos (`model_training_evaluation.py`) |
+| V1.1.2 | developer → main | Monitoreo de data drift y app en Streamlit |
+| V1.1.3 | developer → main | Despliegue con FastAPI + Docker |
 
 ## Instalación y entorno local
 
@@ -96,6 +99,36 @@ python model_monitoring.py           # calcula métricas de drift -> reports/dri
 streamlit run streamlit_app.py       # dashboard interactivo de monitoreo
 ```
 
+### Levantar la API del modelo (FastAPI)
+
+```bash
+cd src
+uvicorn model_deploy:app --reload --port 8000
+```
+
+Documentación interactiva (Swagger UI) en http://localhost:8000/docs, con
+ejemplos de solicitud precargados. Endpoints disponibles:
+
+| Endpoint | Método | Descripción |
+|---|---|---|
+| `/health` | GET | Estado del servicio y del modelo cargado |
+| `/predict` | POST | Predicción para una sola solicitud de crédito (JSON) |
+| `/predict/batch` | POST | Predicción para varias solicitudes en un solo request (lista JSON) |
+| `/predict/csv` | POST | Predicción por lotes a partir de un archivo CSV; responde otro CSV con las columnas originales + predicción |
+
+La respuesta incluye `prediccion_pago_atiempo` (0/1), `probabilidad_pago_atiempo`
+y `nivel_riesgo` (`bajo` / `medio` / `alto`, según umbrales de probabilidad
+documentados en `model_deploy.py`).
+
+### Levantar la API con Docker
+
+```bash
+docker build -t riesgo-crediticio-api .
+docker run -p 8000:8000 riesgo-crediticio-api
+```
+
+La API queda disponible en http://localhost:8000 igual que en local.
+
 ## Estado del proyecto
 
 - [x] **Avance 1 — Versionamiento y colaboración:** estructura de carpetas,
@@ -104,7 +137,8 @@ streamlit run streamlit_app.py       # dashboard interactivo de monitoreo
   entrenamiento y evaluación de modelos supervisados.
 - [x] **Avance 3 — Monitoreo y aplicación:** `model_monitoring.py`, data drift,
   app en Streamlit.
-- [ ] **Avance 4 — Despliegue:** `model_deploy.py`, API con FastAPI, imagen Docker.
+- [x] **Avance 4 — Despliegue:** `model_deploy.py` (API con FastAPI: `/predict`,
+  `/predict/batch`, `/predict/csv`, `/health`) e imagen Docker (`Dockerfile`).
 
 ## Hallazgos y decisiones clave
 
@@ -151,8 +185,18 @@ streamlit run streamlit_app.py       # dashboard interactivo de monitoreo
   variable, muestra indicadores tipo semáforo, la tabla de métricas, la
   evolución del PSI en el tiempo (con detección de cambios abruptos) y las
   alertas con su recomendación (reentrenar vs. monitorear).
+- **Despliegue** (`model_deploy.py`): la API recibe las columnas **crudas**
+  del dataset (las mismas que `Base_de_datos.csv`, sin `puntaje` ni el
+  target) y aplica internamente la misma limpieza e ingeniería de
+  características que en el entrenamiento antes de predecir. La variable
+  `antiguedad_meses` se calculó en el entrenamiento respecto a la fecha más
+  reciente del dataset de entrenamiento (un "snapshot"); para que una
+  solicitud nueva sea consistente con lo que el modelo aprendió, la API
+  reutiliza esa misma fecha de referencia en vez de recalcularla con cada
+  request (lo cual además sería indefinido para una sola fila).
 
 ## Próximos pasos
 
-El Avance 4 (`model_deploy.py`: API con FastAPI + imagen Docker) se
-documentará aquí una vez completado.
+Con el Avance 4 completo, los cuatro avances del Proyecto Integrador están
+cubiertos. Como extra, queda pendiente integrar **SonarCloud** (análisis de
+calidad, seguridad y cobertura de código).
