@@ -29,7 +29,8 @@ mlops_pipeline/
 │   ├── ft_engineering.py             # Ingeniería de características
 │   ├── model_training_evaluation.py  # Entrenamiento y evaluación de modelos
 │   ├── model_deploy.py               # Despliegue del modelo como API
-│   └── model_monitoring.py           # Monitoreo y detección de data drift
+│   ├── model_monitoring.py           # Monitoreo y detección de data drift
+│   └── streamlit_app.py              # Dashboard interactivo de monitoreo
 ├── Base_de_datos.csv                 # Dataset de ejemplo (no productivo)
 ├── requirements.txt                  # Dependencias del proyecto
 ├── .gitignore
@@ -41,7 +42,9 @@ ejecutar `ft_engineering.py` y `model_training_evaluation.py`:
 
 - `models/` — modelo ganador (`best_model.joblib`) y sus metadatos
   (`model_metadata.json`). Se versiona porque `model_deploy.py` lo necesita.
-- `reports/` — tablas comparativas y gráficos de evaluación de modelos.
+- `reports/` — tablas comparativas y gráficos de evaluación de modelos, y
+  `reports/drift/` con las métricas, alertas y gráficos de data drift
+  generados por `model_monitoring.py`.
 - `data/processed/` — `train.csv` / `test.csv` intermedios (no se versionan,
   se regeneran corriendo `ft_engineering.py`).
 
@@ -83,13 +86,23 @@ pip install -r requirements.txt
 python -m ipykernel install --user --name=mlops_pipeline --display-name="mlops_pipeline"
 ```
 
+### Ejecutar el pipeline y el dashboard de monitoreo
+
+```bash
+cd src
+python ft_engineering.py             # genera data/processed/{train,test}.csv
+python model_training_evaluation.py  # entrena y guarda models/best_model.joblib
+python model_monitoring.py           # calcula métricas de drift -> reports/drift/
+streamlit run streamlit_app.py       # dashboard interactivo de monitoreo
+```
+
 ## Estado del proyecto
 
 - [x] **Avance 1 — Versionamiento y colaboración:** estructura de carpetas,
   ramas, `requirements.txt`, `Cargar_datos.ipynb` y `comprension_eda.ipynb`.
 - [x] **Avance 2 — Ingeniería de características y modelado:** `ft_engineering.py`,
   entrenamiento y evaluación de modelos supervisados.
-- [ ] **Avance 3 — Monitoreo y aplicación:** `model_monitoring.py`, data drift,
+- [x] **Avance 3 — Monitoreo y aplicación:** `model_monitoring.py`, data drift,
   app en Streamlit.
 - [ ] **Avance 4 — Despliegue:** `model_deploy.py`, API con FastAPI, imagen Docker.
 
@@ -119,5 +132,27 @@ python -m ipykernel install --user --name=mlops_pipeline --display-name="mlops_p
   sobre el conjunto de entrenamiento para evitar fuga de información desde el
   test set.
 
-Los hallazgos de los avances 3 y 4 se documentarán aquí a medida que avance
-el proyecto.
+- **Monitoreo de data drift** (`model_monitoring.py`): compara la
+  distribución de nuevos lotes de datos contra la distribución de
+  entrenamiento usando PSI, KS, Jensen-Shannon (numéricas) y Chi-cuadrado
+  (categóricas), con umbrales estándar de industria (PSI < 0.10 sin drift,
+  0.10-0.25 moderado, > 0.25 severo). Como el proyecto no cuenta con datos
+  reales de producción, se simulan períodos con drift creciente
+  (`simulate_periods`) para validar que la lógica de detección funciona: por
+  ejemplo, un corrimiento simulado en el ingreso declarado (`log_salario_cliente`)
+  se detecta correctamente como drift severo (PSI > 1) a partir del primer
+  período simulado (ver `reports/drift/psi_heatmap.png`).
+- El test KS puede marcar drift "significativo" en variables con diferencias
+  mínimas cuando el tamaño de muestra es grande (p. ej. `huella_consulta`
+  incluso sin ninguna perturbación introducida) — por eso las alertas de
+  severidad se basan principalmente en PSI, que sí refleja la magnitud real
+  del cambio, y KS/Chi-cuadrado se usan como corroboración estadística.
+- El dashboard en Streamlit (`streamlit_app.py`) permite elegir período y
+  variable, muestra indicadores tipo semáforo, la tabla de métricas, la
+  evolución del PSI en el tiempo (con detección de cambios abruptos) y las
+  alertas con su recomendación (reentrenar vs. monitorear).
+
+## Próximos pasos
+
+El Avance 4 (`model_deploy.py`: API con FastAPI + imagen Docker) se
+documentará aquí una vez completado.
