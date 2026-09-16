@@ -15,9 +15,8 @@ dist/
 .ipynb_checkpoints/
 
 # --- Modelos y artefactos generados por el pipeline ---
-*.pkl
-*.joblib
-models/
+# (best_model.joblib SÍ se versiona en models/ para que model_deploy.py
+# pueda cargarlo; se ignoran otros artefactos intermedios/experimentales)
 artifacts/
 mlruns/
 

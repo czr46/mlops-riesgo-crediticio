@@ -1,0 +1,41 @@
+{
+  "modelo_seleccionado": "random_forest",
+  "metricas": {
+    "accuracy": 0.9219693450998606,
+    "precision": 0.9590443686006825,
+    "recall": 0.9590443686006825,
+    "f1": 0.9590443686006825,
+    "roc_auc": 0.6639850479440923
+  },
+  "variables_numericas": [
+    "plazo_meses",
+    "edad_cliente",
+    "puntaje_datacredito",
+    "cant_creditosvigentes",
+    "huella_consulta",
+    "saldo_mora",
+    "saldo_total",
+    "saldo_principal",
+    "saldo_mora_codeudor",
+    "creditos_sectorFinanciero",
+    "creditos_sectorCooperativo",
+    "creditos_sectorReal",
+    "promedio_ingresos_datacredito",
+    "ratio_cuota_salario",
+    "ratio_deuda_salario",
+    "antiguedad_meses",
+    "flag_mora",
+    "log_capital_prestado",
+    "log_salario_cliente",
+    "log_total_otros_prestamos",
+    "log_cuota_pactada"
+  ],
+  "variables_categoricas": [
+    "tipo_credito",
+    "tipo_laboral",
+    "tendencia_ingresos",
+    "edad_bucket"
+  ],
+  "incluye_puntaje": false,
+  "nota": "Se excluye 'puntaje' del modelo de producción por riesgo de fuga de informacion (correlacion ~0.92 con la variable objetivo, ver EDA). Ver reports/model_comparison_con_puntaje.csv para el analisis de sensibilidad incluyendo esa variable."
+}
