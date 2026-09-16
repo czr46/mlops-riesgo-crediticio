@@ -1,0 +1,338 @@
+[
+  {
+    "periodo": "P0_sin_drift",
+    "variable": "huella_consulta",
+    "metrica": "KS_statistic",
+    "valor": 0.03413830362840819,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'huella_consulta' durante P0_sin_drift (KS_statistic=0.034)."
+  },
+  {
+    "periodo": "P1_shift_0.2",
+    "variable": "edad_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.08074032236573445,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'edad_cliente' durante P1_shift_0.2 (KS_statistic=0.081)."
+  },
+  {
+    "periodo": "P1_shift_0.2",
+    "variable": "huella_consulta",
+    "metrica": "KS_statistic",
+    "valor": 0.03413830362840819,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'huella_consulta' durante P1_shift_0.2 (KS_statistic=0.034)."
+  },
+  {
+    "periodo": "P1_shift_0.2",
+    "variable": "ratio_deuda_salario",
+    "metrica": "KS_statistic",
+    "valor": 0.10762251090097658,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'ratio_deuda_salario' durante P1_shift_0.2 (KS_statistic=0.108)."
+  },
+  {
+    "periodo": "P1_shift_0.2",
+    "variable": "log_salario_cliente",
+    "metrica": "PSI",
+    "valor": 1.2717923719279,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P1_shift_0.2 (PSI=1.272). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P1_shift_0.2",
+    "variable": "log_salario_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.5356082564209624,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'log_salario_cliente' durante P1_shift_0.2 (KS_statistic=0.536)."
+  },
+  {
+    "periodo": "P1_shift_0.2",
+    "variable": "log_salario_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.4585139377636716,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P1_shift_0.2 (Jensen_Shannon=0.459). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "edad_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.14205012264441536,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'edad_cliente' durante P2_shift_0.4 (KS_statistic=0.142)."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "huella_consulta",
+    "metrica": "KS_statistic",
+    "valor": 0.03413830362840819,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'huella_consulta' durante P2_shift_0.4 (KS_statistic=0.034)."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "ratio_deuda_salario",
+    "metrica": "KS_statistic",
+    "valor": 0.14849571108676385,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'ratio_deuda_salario' durante P2_shift_0.4 (KS_statistic=0.148)."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "log_salario_cliente",
+    "metrica": "PSI",
+    "valor": 4.030452690054344,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P2_shift_0.4 (PSI=4.030). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "log_salario_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.8012950624496624,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'log_salario_cliente' durante P2_shift_0.4 (KS_statistic=0.801)."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "log_salario_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.7378955703067906,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P2_shift_0.4 (Jensen_Shannon=0.738). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P2_shift_0.4",
+    "variable": "tipo_laboral",
+    "metrica": "Chi2_statistic",
+    "valor": 18.619005968242206,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'tipo_laboral' durante P2_shift_0.4 (Chi2_statistic=18.619)."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "edad_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.17363395915161461,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'edad_cliente' durante P3_shift_0.6 (KS_statistic=0.174)."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "huella_consulta",
+    "metrica": "KS_statistic",
+    "valor": 0.03413830362840819,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'huella_consulta' durante P3_shift_0.6 (KS_statistic=0.034)."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "ratio_deuda_salario",
+    "metrica": "KS_statistic",
+    "valor": 0.2100666061401507,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'ratio_deuda_salario' durante P3_shift_0.6 (KS_statistic=0.210)."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "log_salario_cliente",
+    "metrica": "PSI",
+    "valor": 6.416816197267349,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P3_shift_0.6 (PSI=6.417). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "log_salario_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.9245127534547856,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'log_salario_cliente' durante P3_shift_0.6 (KS_statistic=0.925)."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "log_salario_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.8367964710852127,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P3_shift_0.6 (Jensen_Shannon=0.837). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P3_shift_0.6",
+    "variable": "tipo_laboral",
+    "metrica": "Chi2_statistic",
+    "valor": 52.73596812464279,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'tipo_laboral' durante P3_shift_0.6 (Chi2_statistic=52.736)."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "edad_cliente",
+    "metrica": "PSI",
+    "valor": 0.3782356747848596,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'edad_cliente' durante P4_shift_0.8 (PSI=0.378). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "edad_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.2333248639367158,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'edad_cliente' durante P4_shift_0.8 (KS_statistic=0.233)."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "edad_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.2546574832953345,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'edad_cliente' durante P4_shift_0.8 (Jensen_Shannon=0.255). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "huella_consulta",
+    "metrica": "KS_statistic",
+    "valor": 0.03413830362840819,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'huella_consulta' durante P4_shift_0.8 (KS_statistic=0.034)."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "ratio_deuda_salario",
+    "metrica": "PSI",
+    "valor": 0.3416696923292887,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'ratio_deuda_salario' durante P4_shift_0.8 (PSI=0.342). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "ratio_deuda_salario",
+    "metrica": "KS_statistic",
+    "valor": 0.2675192705745649,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'ratio_deuda_salario' durante P4_shift_0.8 (KS_statistic=0.268)."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "log_salario_cliente",
+    "metrica": "PSI",
+    "valor": 7.748008764070697,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P4_shift_0.8 (PSI=7.748). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "log_salario_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.9738695378460652,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'log_salario_cliente' durante P4_shift_0.8 (KS_statistic=0.974)."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "log_salario_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.8535164142857122,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P4_shift_0.8 (Jensen_Shannon=0.854). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P4_shift_0.8",
+    "variable": "tipo_laboral",
+    "metrica": "Chi2_statistic",
+    "valor": 95.32020661076102,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'tipo_laboral' durante P4_shift_0.8 (Chi2_statistic=95.320)."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "edad_cliente",
+    "metrica": "PSI",
+    "valor": 0.5032862506325247,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'edad_cliente' durante P5_shift_1.0 (PSI=0.503). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "edad_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.26119295497247985,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'edad_cliente' durante P5_shift_1.0 (KS_statistic=0.261)."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "edad_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.29092680851127334,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'edad_cliente' durante P5_shift_1.0 (Jensen_Shannon=0.291). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "huella_consulta",
+    "metrica": "KS_statistic",
+    "valor": 0.03413830362840819,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'huella_consulta' durante P5_shift_1.0 (KS_statistic=0.034)."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "ratio_deuda_salario",
+    "metrica": "PSI",
+    "valor": 0.5143696125828792,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'ratio_deuda_salario' durante P5_shift_1.0 (PSI=0.514). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "ratio_deuda_salario",
+    "metrica": "KS_statistic",
+    "valor": 0.3115378536175382,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'ratio_deuda_salario' durante P5_shift_1.0 (KS_statistic=0.312)."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "ratio_deuda_salario",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.2971802356693409,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'ratio_deuda_salario' durante P5_shift_1.0 (Jensen_Shannon=0.297). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "log_salario_cliente",
+    "metrica": "PSI",
+    "valor": 7.5646000677788,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P5_shift_1.0 (PSI=7.565). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "log_salario_cliente",
+    "metrica": "KS_statistic",
+    "valor": 0.9842057081575394,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'log_salario_cliente' durante P5_shift_1.0 (KS_statistic=0.984)."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "log_salario_cliente",
+    "metrica": "Jensen_Shannon",
+    "valor": 0.8529718552572834,
+    "nivel": "severo",
+    "mensaje": "[CRÍTICO] Drift severo en 'log_salario_cliente' durante P5_shift_1.0 (Jensen_Shannon=0.853). Revisar la variable y considerar reentrenamiento del modelo."
+  },
+  {
+    "periodo": "P5_shift_1.0",
+    "variable": "tipo_laboral",
+    "metrica": "Chi2_statistic",
+    "valor": 151.09742446741785,
+    "nivel": "drift_detectado",
+    "mensaje": "[ALERTA] Se detectó drift estadísticamente significativo en 'tipo_laboral' durante P5_shift_1.0 (Chi2_statistic=151.097)."
+  }
+]
