@@ -36,6 +36,15 @@ mlops_pipeline/
 └── readme.md
 ```
 
+Además de estos archivos fijos, el pipeline genera dos carpetas de salida al
+ejecutar `ft_engineering.py` y `model_training_evaluation.py`:
+
+- `models/` — modelo ganador (`best_model.joblib`) y sus metadatos
+  (`model_metadata.json`). Se versiona porque `model_deploy.py` lo necesita.
+- `reports/` — tablas comparativas y gráficos de evaluación de modelos.
+- `data/processed/` — `train.csv` / `test.csv` intermedios (no se versionan,
+  se regeneran corriendo `ft_engineering.py`).
+
 > En un entorno productivo, `Base_de_datos.csv` no se versionaría en el
 > repositorio: la información llegaría desde el DWH/Datalake de la empresa a
 > través de otro proceso. Para este ejercicio académico se utiliza un dataset
@@ -78,11 +87,37 @@ python -m ipykernel install --user --name=mlops_pipeline --display-name="mlops_p
 
 - [x] **Avance 1 — Versionamiento y colaboración:** estructura de carpetas,
   ramas, `requirements.txt`, `Cargar_datos.ipynb` y `comprension_eda.ipynb`.
-- [ ] **Avance 2 — Ingeniería de características y modelado:** `ft_engineering.py`,
+- [x] **Avance 2 — Ingeniería de características y modelado:** `ft_engineering.py`,
   entrenamiento y evaluación de modelos supervisados.
 - [ ] **Avance 3 — Monitoreo y aplicación:** `model_monitoring.py`, data drift,
   app en Streamlit.
 - [ ] **Avance 4 — Despliegue:** `model_deploy.py`, API con FastAPI, imagen Docker.
 
-Los principales hallazgos del análisis exploratorio y las decisiones de
-modelado se documentarán en esta sección a medida que avance el proyecto.
+## Hallazgos y decisiones clave
+
+- **`puntaje` presenta una correlación ~0.92 con `Pago_atiempo`** y, al
+  incluirla como feature, cualquier modelo alcanza ROC-AUC ≈ 1.0 — una
+  confirmación empírica de fuga de información (ver
+  `reports/model_comparison_con_puntaje.csv`). Por esto **se excluye del
+  modelo de producción**.
+- **Sin `puntaje`**, los tres modelos candidatos (regresión logística, random
+  forest, XGBoost) alcanzan un ROC-AUC realista de **~0.66**. Se seleccionó
+  **random forest** como modelo ganador por tener el mejor F1/ROC-AUC de
+  forma consistente (ver `reports/model_comparison_sin_puntaje.csv` y
+  `models/model_metadata.json`).
+- El desbalance de clases (~95%/5%) se maneja con `class_weight="balanced"`
+  (regresión logística / random forest) y `scale_pos_weight` (XGBoost), y se
+  evalúa con precision, recall, F1 y ROC-AUC en vez de accuracy.
+- Variables derivadas: relación cuota/salario, relación deuda/salario,
+  antigüedad del crédito, bandera de mora, transformación logarítmica de
+  variables monetarias y bucket de edad.
+- Preprocesamiento (feature-engine): winsorización de outliers en
+  `salario_cliente`/`total_otros_prestamos`, agrupación de categorías raras
+  en `tipo_credito`, imputación explícita de `tendencia_ingresos` como
+  "Sin_informacion", indicadores + imputación de mediana para las variables
+  de saldo con nulos, one-hot encoding y escalado — todo ajustado únicamente
+  sobre el conjunto de entrenamiento para evitar fuga de información desde el
+  test set.
+
+Los hallazgos de los avances 3 y 4 se documentarán aquí a medida que avance
+el proyecto.
