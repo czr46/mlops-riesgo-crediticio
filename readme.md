@@ -139,6 +139,9 @@ La API queda disponible en http://localhost:8000 igual que en local.
   app en Streamlit.
 - [x] **Avance 4 — Despliegue:** `model_deploy.py` (API con FastAPI: `/predict`,
   `/predict/batch`, `/predict/csv`, `/health`) e imagen Docker (`Dockerfile`).
+- [x] **Extra — Calidad de código:** integración con **SonarCloud** vía GitHub
+  Actions (`.github/workflows/build.yml`), analizando `src/` en cada push y
+  pull request a `main`.
 
 ## Hallazgos y decisiones clave
 
@@ -198,5 +201,6 @@ La API queda disponible en http://localhost:8000 igual que en local.
 ## Próximos pasos
 
 Con el Avance 4 completo, los cuatro avances del Proyecto Integrador están
-cubiertos. Como extra, queda pendiente integrar **SonarCloud** (análisis de
-calidad, seguridad y cobertura de código).
+cubiertos, y como extra ya se integró **SonarCloud** (`.github/workflows/build.yml`
++ `sonar-project.properties`), que analiza `src/` en cada push y pull request
+a `main`. No quedan pendientes abiertos para el entregable final.
