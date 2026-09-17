@@ -309,6 +309,15 @@ async def predict_csv(file: UploadFile = File(..., description="CSV con las mism
 
 
 if __name__ == "__main__":
+    import os
+
     import uvicorn
 
-    uvicorn.run("model_deploy:app", host="0.0.0.0", port=8000, reload=True)
+    # Por defecto solo escucha en localhost (127.0.0.1): correr esto
+    # directamente en tu maquina no deberia exponer la API a toda tu red.
+    # Dentro de un contenedor Docker SI hace falta escuchar en todas las
+    # interfaces para que el puerto publicado (`docker run -p ...`) llegue
+    # al proceso -- eso se resuelve aparte, con el CMD del Dockerfile
+    # (`uvicorn model_deploy:app --host 0.0.0.0 ...`), no aqui.
+    host = os.getenv("API_HOST", "127.0.0.1")
+    uvicorn.run("model_deploy:app", host=host, port=8000, reload=True)
